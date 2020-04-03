@@ -8,6 +8,6 @@ spring:
     name: eleven-config-dev
 ---
 spring:
-  profiles: uat
+  profiles: test
   application:
-    name: eleven-config-uat
+    name: eleven-config-test
