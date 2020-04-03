@@ -1,7 +1,6 @@
 spring:
   profiles:
-    active:
-      - dev
+    active: dev
 ---
 spring:
   profiles: dev
@@ -9,6 +8,6 @@ spring:
     name: eleven-config-dev
 ---
 spring:
-  profiles: test
+  profiles: dev
   application:
-    name: eleven-config-test
+    name: eleven-config-uat
