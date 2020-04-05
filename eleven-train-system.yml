@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: dev
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://mysql.eleven.nowy.xyz:3306/eleven_system?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: eleven_system
+    password: eleven_system
+---
+spring:
+  profiles: test
+  datasource:
+    url: jdbc:mysql://mysql.eleven.nowy.xyz:3306/eleven_system?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: eleven_system
+    password: eleven_system
