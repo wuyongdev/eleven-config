@@ -2,12 +2,50 @@ spring:
   profiles:
     active: dev
 ---
+server:
+  port: 12800
+
 spring:
   profiles: dev
+  #数据库配置
   datasource:
-    url: jdbc:mysql://mysql.eleven.nowy.xyz:3306/eleven_system?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    username: eleven_system
-    password: eleven_system
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://mysql11.eleven.nowy.xyz:3306/eleven_system?useUnicode=true&characterEncoding=utf-8&useSSL=false}
+    username: ${SPRING_DATASOURCE_USERNAME:eleven_system11}
+    password: ${SPRING_DATASOURCE_PASSWORD:eleven_system11}
+    hikari:
+      # 连接池最小空闲连接数
+      minimum-idle: ${SPRING_DATASOURCE_MINIMUM_IDLE:20}
+      # 连接池允许的最大连接数
+      maximum-pool-size: ${SPRING_DATASOURCE_MAXIMUM_POOL_SIZE:200}
+      # 等待连接池分配连接的最大时长（毫秒）
+      connection-timeout: ${SPRING_DATASOURCE_CONNECTION_TIMEOUT:30000}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mvc:
+    view:
+      suffix: .html
+  thymeleaf:
+    prefix: classpath:public/
+
+  application:
+    name: eleven-train-system
+
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+
+eureka:
+  instance:
+    instance-id: ${EUREKA_INSTANCE_ID:eleven-train-system}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://register.eleven.local.nowy.xyz:18761/eureka/}
+
+logging:
+  level:
+    org.apache.ibatis: debug
+    xyz.nowy.eleven.train.system.infra.mapper: debug
 ---
 spring:
   profiles: test
